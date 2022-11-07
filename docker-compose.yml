@@ -14,6 +14,7 @@ services:
     links:
         - php
         - db
+        
   php:
     build:
       context: .
@@ -22,6 +23,7 @@ services:
     volumes:
       - /Users/**changeme**/Documents/Development/Web:/var/www
       - ./php/php.ini:/usr/local/etc/php/php.ini
+      
   db:
     image: mariadb:latest
     restart: always
@@ -32,7 +34,6 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: ${MYSQL_PASSWORD}
     
-
   phpmyadmin:
     image: phpmyadmin
     restart: always
