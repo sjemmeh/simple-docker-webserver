@@ -25,14 +25,18 @@ services:
       - ./php/php.ini:/usr/local/etc/php/php.ini
       
   db:
-    image: mariadb:latest
+    image: lscr.io/linuxserver/mariadb:latest
     restart: always
     volumes:
-      - ./mariadb:/etc/mysql/conf.d
-    env_file:
-      - mariadb.env
+      - ./mariadb:/config
     environment:
-      MARIADB_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      PUID: ${PUID}
+      PGID: ${PGID}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      TZ: Europe/Amsterdam
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     
   phpmyadmin:
     image: phpmyadmin
@@ -40,4 +44,4 @@ services:
     ports:
       - 8080:80
     environment:
-      - PMA_ARBITRARY=1
+      PMA_ARBITRARY: 1
