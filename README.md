@@ -9,7 +9,7 @@ MYSQL_USER=
 MYSQL_PASSWORD=
 ```
 
-Place SSL key in following folder:
+Place SSL certificate in following folder:
 ```
 nginx/ssl/cert.pem
 ngix/ssl/key.pem
@@ -22,6 +22,3 @@ Edit the docker-compose.yml and config files where neccesary, then run the follo
 ```
 docker compose build && docker compose up -d 
 ```
-
-
-
