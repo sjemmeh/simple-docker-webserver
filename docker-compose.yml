@@ -6,11 +6,11 @@ services:
       dockerfile: Dockerfile_nginx
     restart: always
     volumes:    
-      - /Users/**changeme**/Documents/Development/Web:/var/www
-      - ./nginx/site.conf:/etc/nginx/conf.d/site.conf
+      - ./nginx:/nginx # Keep same as in php container
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     ports:
       - 80:80
+      - 443:443
     links:
         - php
         - db
@@ -21,10 +21,10 @@ services:
       dockerfile: Dockerfile_php
     restart: always
     volumes:
-      - /Users/**changeme**/Documents/Development/Web:/var/www
+      - ./nginx:/nginx # Keep same as in nginx container
       - ./php/php.ini:/usr/local/etc/php/php.ini
       
-  db:
+  db: # Database
     image: lscr.io/linuxserver/mariadb:latest
     restart: always
     volumes:
@@ -38,7 +38,7 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     
-  phpmyadmin:
+  phpmyadmin: # Not required - just for convenience.
     image: phpmyadmin
     restart: always
     ports:

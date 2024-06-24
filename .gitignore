@@ -1,0 +1,7 @@
+nginx/ssl/cert.pem
+nginx/ssl/key.pem
+nginx/proxies/jellyfin.conf
+mariadb
+.env
+nginx/logs/access.log
+nginx/logs/error.log
