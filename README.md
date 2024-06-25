@@ -25,7 +25,7 @@ AUTHENTIK_EMAIL__FROM=authentik@localhost
 EOF
 ```
 
-## Edit the .env: [authentik's docs](https://docs.goauthentik.io/docs/installation/docker-compose)
+Edit the .env: [authentik's docs](https://docs.goauthentik.io/docs/installation/docker-compose)
 
 ## Place SSL certificate in following folder:
 ```
