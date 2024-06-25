@@ -2,8 +2,9 @@
 Generate .env with the following command:
 ```
 cat >> .env << EOF
-PUID=1000
-PGID=1000
+# Default akadmin password
+BS_PASS=$(openssl rand 60 | base64 -w 0)
+
 PG_PASS=$(openssl rand 36 | base64 -w 0)
 AUTHENTIK_SECRET_KEY=$(openssl rand 60 | base64 -w 0)
 AUTHENTIK_BOOTSTRAP_PASSWORD=$(openssl rand 60 | base64 -w 0)

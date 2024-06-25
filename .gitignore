@@ -1,6 +1,5 @@
 .env
-nginx/ssl/cert.pem
-nginx/ssl/key.pem
+nginx/ssl/*
 nginx/proxies/*.conf
 nginx/logs/access.log
 nginx/logs/error.log
