@@ -1,6 +1,4 @@
 .env
-nginx/ssl/*
-nginx/proxies/*.conf
-nginx/logs/access.log
-nginx/logs/error.log
+nginx/ssl/*.pem
+nginx/logs/*.log
 authentik

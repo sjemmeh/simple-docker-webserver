@@ -1,4 +1,4 @@
-## Simple docker container for webserver, with authentik
+# Simple docker container for webserver, with authentik
 Generate .env with the following command:
 ```
 cat >> .env << EOF
@@ -25,20 +25,35 @@ AUTHENTIK_EMAIL__FROM=authentik@localhost
 EOF
 ```
 
-Edit the .env: [authentik's docs](https://docs.goauthentik.io/docs/installation/docker-compose)
+## Edit the .env: [authentik's docs](https://docs.goauthentik.io/docs/installation/docker-compose)
 
-Place SSL certificate in following folder:
+## Place SSL certificate in following folder:
 ```
 nginx/ssl/cert.pem
 ngix/ssl/key.pem
 ```
-If you want to use Letsencrypt you can use the [certbot](https://hub.docker.com/r/certbot/certbot) container and edit the config to your own liking
+My personal preference is to use a cloudflare origin CA: [Origin Configuration](https://developers.cloudflare.com/ssl/origin-configuration/)
+If you want to use Letsencrypt you can use the [certbot](https://hub.docker.com/r/certbot/certbot) container.
 
-Edit the docker-compose.yml and config files where neccesary, then run the following:
-
+## Edit the docker-compose.yml and config files where neccesary, then run the following:
 
 ```
 docker compose build && docker compose up -d 
 ```
 
-Then navigate to http://***server-ip***:9000/ to configure authentik (default user: akadmin, pass is in .env file under "BS_PASS")
+# Configure Authentik:
+* Navigate to http://***server-ip***:9000/ to configure authentik (default user: akadmin, pass is in .env file under "BS_PASS")
+* In the admin panel go to Applications > Outposts, and edit the default outpost:
+  * Under advanced settings, set the "authentik_host" variable to your own host (eg auth.example.com)
+
+## Securing a domain to authentik:
+* In the admin panel go to Applications > Applications
+* On the top press "Create with Wizard"
+* In Application Details, under name, enter the name of the application, the slug is should be autofilled
+* In Provider Type select "Forward Auth (Single Application)
+* Name the application again and select the authorization flow. The external host is the (sub)domain you're trying to secure (eg. https://nextcloud.example.com)
+* When you have created the application, go to Applications > Outposts, and edit the outpost. Add the previously added application to the list and press update.
+
+## Creating a (reverse-proxy) that uses authentik:
+In the example files:
+* Uncomment the authentik-specific areas, if you have changed the docker-compose service name, change to the new value.
