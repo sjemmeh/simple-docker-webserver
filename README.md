@@ -46,7 +46,7 @@ docker compose build && docker compose up -d
 * In the admin panel go to Applications > Outposts, and edit the default outpost:
   * Under advanced settings, set the "authentik_host" variable to your own host (eg auth.example.com)
 
-## Securing a domain to authentik:
+## Securing a domain with authentik:
 * In the admin panel go to Applications > Applications
 * On the top press "Create with Wizard"
 * In Application Details, under name, enter the name of the application, the slug is should be autofilled
