@@ -1,4 +1,4 @@
-# Simple docker container for webserver, with authentik
+# Docker container for nginx, with authentik
 Generate .env with the following command:
 ```
 cat >> .env << EOF
