@@ -22,7 +22,21 @@ services:
       - ./nginx:/nginx # Keep same as in nginx container
       - ./php/php.ini:/usr/local/etc/php/php.ini
        
-
+  letsencrypt:
+    image: adferrand/letsencrypt-dns
+    container_name: "letsencrypt-dns"
+    volumes:
+      - "./nginx/letsencrypt/:/etc/letsencrypt"
+    environment:
+      VERSION: ${LETSENCRYPT_VERSION:-latest}
+      LETSENCRYPT_USER_MAIL: ${LETSENCRYPT_EMAIL}
+      LEXICON_PROVIDER: ${LETSENCRYPT_PROVIDER:-cloudflare}
+      LEXICON_PROVIDER_OPTIONS: ${LETSENCRYPT_PROVIDER_OPTIONS}
+      LEXICON_SLEEP_TIME: ${LETSENCRYPT_SLEEP_TIME:-30}
+      CERTS_DIRS_MODE: ${LETSENCRYPT_DIRS_MODE:-0750}
+      CERTS_FILES_MODE: ${LETSENCRYPT_FILES_MODE:-0640}
+    restart: always
+    
 #################
 ### Authentik ###
 #################
