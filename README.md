@@ -35,6 +35,12 @@ LETSENCRYPT_PROVIDER_OPTIONS=--auth-username=<USERNAME HERE> --auth-token=<AUTH 
 
 EOF
 ```
+Create a domains.conf file in nginx/letsencrypt/domains.conf
+Add a line for each domain you want to use letsencrypt for:
+```
+*.example.com
+example.com
+```
 
 Edit the .env: [authentik's docs](https://docs.goauthentik.io/docs/installation/docker-compose)
 
